@@ -16,6 +16,8 @@ function getTransports ({ app_name, environment }) {
     dirname: 'logs',
     filename: `${app_name}-${environment}-%DATE%.log`,
     datePattern: 'YYYY-MM-DD-A',
+    json: true,
+
     maxSize: '20m',
     maxFiles: '7d',
     zippedArchive: false,
@@ -29,7 +31,7 @@ function getTransports ({ app_name, environment }) {
     case 'local':
       return [consoleTransport];
     default:
-      return [consoleTransport];
+      return [fileTransport];
   }
 }
 
