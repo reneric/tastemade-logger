@@ -40,9 +40,9 @@ const formatter = (loggingObject, options = {}) => {
  * @param {object} info - passed in by parent function of combine/format from winston
  * @param {object} opts - options passed into the logger
  */
-const format = format((info, options) => formatter(info, options));
+const logFormat = format((info, options) => formatter(info, options));
 
 module.exports = {
-  format,
+  logFormat,
   formatter,
 };
