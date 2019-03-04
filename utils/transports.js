@@ -1,5 +1,5 @@
 const { transports } = require('winston');
-require('winston-daily-rotate-file');
+transports.DailyRotateFile = require('winston-daily-rotate-file');
 
 /**
  *
@@ -12,7 +12,7 @@ function getTransports ({ app_name, environment }) {
   // date pattern is set to have two logs per day, AM and PM
   // resulting in 14 logs every 7 days
   // Zipping causes problems with filebeat
-  const fileTransport = new (transports.DailyRotateFile)({
+  const fileTransport = new transports.DailyRotateFile({
     dirname: 'logs',
     filename: `${app_name}-${environment}-%DATE%.log`,
     datePattern: 'YYYY-MM-DD-A',
