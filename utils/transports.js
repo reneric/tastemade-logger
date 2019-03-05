@@ -27,8 +27,7 @@ function getTransports ({ app_name, environment }) {
 
   switch (environment) {
     case 'local':
-      return [fileTransport];
-      // return [consoleTransport];
+      return [fileTransport, consoleTransport];
     default:
       return [fileTransport];
   }
