@@ -28,6 +28,7 @@ const initializeLogger = (options = {}) => {
  * @returns logger
  */
 const middleware = (app, options = {}) => {
+  console.log(logger);
   if (typeof logger === 'undefined') {
     initializeLogger({ ...options, enableMiddleware: true });
   }
@@ -73,5 +74,6 @@ module.exports = {
   initializeLogger,
   getLogger,
   middleware,
+  Middleware,
   namespace,
 };
