@@ -28,7 +28,6 @@ const initializeLogger = (options = {}) => {
  * @returns logger
  */
 const middleware = (app, options = {}) => {
-  console.log(logger);
   if (typeof logger === 'undefined') {
     initializeLogger({ ...options, enableMiddleware: true });
   }
@@ -37,7 +36,6 @@ const middleware = (app, options = {}) => {
 
   // Run the context for each request. Assign a unique identifier to each request
   app.use((req, res, next) => {
-    console.log(req);
     const correlationId = req.get('X-Correlation-ID') || uuid.v4();
     const requestId = uuid.v4();
     namespace.setContext('correlationId', correlationId);
@@ -74,6 +72,5 @@ module.exports = {
   initializeLogger,
   getLogger,
   middleware,
-  Middleware,
   namespace,
 };
