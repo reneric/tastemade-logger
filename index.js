@@ -1,4 +1,5 @@
 const uuid = require('uuid');
+const httpContext = require('express-http-context');
 const createLogger = require('./lib/createLogger');
 const Middleware = require('./lib/middleware');
 const namespace = require('./lib/namespace');
@@ -32,16 +33,15 @@ const middleware = (app, options = {}) => {
     initializeLogger({ ...options, enableMiddleware: true });
   }
 
-  app.use(namespace.middleware);
+  app.use(httpContext.middleware);
 
   // Run the context for each request. Assign a unique identifier to each request
   app.use((req, res, next) => {
-    console.log(req);
     const correlationId = req.get('X-Correlation-ID') || uuid.v4();
     const requestId = uuid.v4();
-    namespace.setContext('correlationId', correlationId);
-    namespace.setContext('requestId', requestId);
-    namespace.setContext('processId', process.pid);
+    httpContext.set('correlationId', correlationId);
+    httpContext.set('requestId', requestId);
+    httpContext.set('processId', process.pid);
     // make these available as part of the request for other middleware
     req.correlationId = correlationId;
     req.requestId = requestId;
@@ -69,9 +69,23 @@ const getLogger = () => {
   return logger;
 };
 
+/**
+ * getCorrelationId
+ * This returns the correlationId from the current context
+ * @returns value or undefined
+ */
+const getCorrelationId = () => {
+  if (typeof logger === 'undefined') {
+    throw new Error('Logger has not been initialized');
+  }
+
+  return httpContext.get('correlationId') || namespace.getContext('correlationId');
+};
+
 module.exports = {
   initializeLogger,
   getLogger,
   middleware,
   namespace,
+  getCorrelationId,
 };

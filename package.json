@@ -14,11 +14,11 @@
   "license": "ISC",
   "dependencies": {
     "continuation-local-storage": "3.2.1",
+    "express-http-context": "1.0.3",
     "jwt-decode": "2.2.0",
     "lodash.once": "4.1.1",
     "useragent": "2.3.0",
     "uuid": "3.3.2",
-    "cls-hooked": "4.2.2",
     "winston": "3.2.1",
     "winston-daily-rotate-file": "^3.8.0"
   },
