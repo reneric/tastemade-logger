@@ -29,7 +29,7 @@ function getTransports ({ app_name, environment }) {
     case 'local':
       return [fileTransport, consoleTransport];
     default:
-      return [fileTransport];
+      return [fileTransport, consoleTransport];
   }
 }
 
