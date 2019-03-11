@@ -1,6 +1,6 @@
 {
   "name": "tm-logger",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "A winston wrapper for use in Tastemade node applications",
   "main": "index.js",
   "scripts": {
