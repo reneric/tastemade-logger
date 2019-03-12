@@ -6,10 +6,9 @@ const formatter = (loggingObject, options = {}) => {
     app_name = loggingObject.app_name,
     environment = loggingObject.environment,
     metadata,
-    requestId = getContext('requestId'),
-    correlationId = getContext('correlationId'),
+    requestId = getContext('requestId') || loggingObject.requestId,
+    correlationId = getContext('correlationId') || loggingObject.correlationId,
   } = options;
-
   const {
     message = 'TM Kitchen Default Message',
   } = loggingObject;
