@@ -42,6 +42,7 @@ const middleware = (app, options = {}) => {
     httpContext.set('correlationId', correlationId);
     httpContext.set('requestId', requestId);
     httpContext.set('processId', process.pid);
+
     // make these available as part of the request for other middleware
     req.correlationId = correlationId;
     req.requestId = requestId;
